@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.scss';
+import withLayout from './layout/layout';
+import { Routes, Route } from "react-router-dom";
+import FindCountry from './pages/FindCountry/find_country';
+import Country from './pages/CountryPage/[country]';
+import Games from './pages/GamesPage/games';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(): JSX.Element {
+    return (
+        <div className={styles.main_block}>
+            <Routes>
+                <Route path="/" element={<FindCountry />} />
+                <Route path="/country/:country" element={<Country />} />
+                <Route path="/games" element={<Games />} />
+            </Routes>
+
+        </div>
+    )
 }
 
-export default App;
+export default withLayout(App);

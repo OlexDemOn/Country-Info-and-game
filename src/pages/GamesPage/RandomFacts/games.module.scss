@@ -1,0 +1,7 @@
+@import '../../styles/mixin.scss';
+
+.main_block{
+    width: 100%;
+    min-height: 100%;
+    @include adaptiv("padding", 30, 10);
+}

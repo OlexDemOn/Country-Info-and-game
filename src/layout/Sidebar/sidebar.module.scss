@@ -1,0 +1,44 @@
+@import '../../styles/mixin.scss';
+
+.sidebar{
+    padding: 15px;
+    span{
+        transition: color 0.2s ease-in-out;
+    }
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+
+.menu_block{
+    position: fixed;
+    
+}
+
+.first_layer{
+    span{
+        font-size: 18px;
+        margin: 15px 0;
+        cursor: pointer;
+    }
+}
+
+.second_layer{
+    border-left: 1px solid $primary;
+    overflow: hidden;
+    
+}
+
+.second_layer_item span{
+    margin-left: 20px;
+    font-size: 16px;
+    color: rgba($color: $text, $alpha: 0.6);
+    cursor: pointer;
+}
+
+.first_layerOpened >span,
+.first_layer >span:hover,
+.second_layer_item span:hover,
+.second_layer_itemOpened span{
+    color: $primary;
+}

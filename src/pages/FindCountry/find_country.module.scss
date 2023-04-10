@@ -1,0 +1,50 @@
+@import '../../styles/mixin.scss';
+
+.main_block{
+    width: 100%;
+    min-height: 100%;
+    @include adaptiv("padding", 30, 10);
+    .country_block{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        @include adaptiv("gap", 40, 10);
+        cursor: pointer;
+        .country_item{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 5px;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 150px;
+            img{
+                object-fit: cover;
+                width: 100%;
+                min-height: 100%;
+            }
+            span{
+                font-size: 14px;
+            }
+        }
+    }
+    .form_block{
+        width: 100%;
+        height: 50px;
+        border: 1px solid $primary;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        form{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            input{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
