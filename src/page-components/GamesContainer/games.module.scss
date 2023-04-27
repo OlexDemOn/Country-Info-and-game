@@ -1,0 +1,28 @@
+@import '../../styles/mixin.scss';
+
+.main_block{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    @include adaptiv("padding", 30, 10);
+}
+
+.game_container{
+    width: 100%;
+    height: 100%;
+}
+
+.game_timer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}

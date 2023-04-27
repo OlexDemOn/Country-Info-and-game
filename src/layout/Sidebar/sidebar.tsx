@@ -16,7 +16,7 @@ const menuItems: MenuProps[] = [
         isActive: false,
         children: [
             { name: "Quiz game", isActive: false, link: '/games/quizGame', },
-            { name: "Random facts", isActive: false, link: '/games/randomFactsGame', },
+            { name: "Random facts", isActive: false, link: '/games/factsGame', },
             { name: "Flags game", isActive: false, link: '/games/flagsGame', },
         ],
     },
@@ -47,7 +47,6 @@ export default function Sidebar({ className, ...props }: SidebarProps): JSX.Elem
             menuItem.isActive = menuItem.link === location.pathname && true;
             menuItem.children && menuItem.children.forEach((children: Children) => {
                 if (children.link === location.pathname) {
-                    console.log("ACTIVE");
                     menuItem.isActive = true;
                     children.isActive = true;
                     return

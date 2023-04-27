@@ -2,29 +2,38 @@
 
 .main_block{
     width: 100%;
-    min-height: 100%;
-    @include adaptiv("padding", 30, 10);
+    height: 100%;
     .country_block{
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        @include adaptiv("gap", 40, 10);
-        cursor: pointer;
-        .country_item{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 5px;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            height: 150px;
-            img{
-                object-fit: cover;
+        height: 100%;
+        @include adaptiv("padding", 30, 10);
+        >*{
+            pointer-events: none;
+            display: grid;
+            align-content: flex-start;
+            height: 100%;
+            @include adaptiv("padding-bottom", 30, 10);
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            @include adaptiv("column-gap", 40, 10);
+            @include adaptiv("row-gap", 60, 30);
+            cursor: pointer;
+            .country_item{
+                pointer-events: all;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 5px;
+                align-items: center;
+                position: relative;
                 width: 100%;
-                min-height: 100%;
-            }
-            span{
-                font-size: 14px;
+                height: 150px;
+                img{
+                    object-fit: cover;
+                    width: 100%;
+                    min-height: 100%;
+                }
+                span{
+                    font-size: 14px;
+                }
             }
         }
     }

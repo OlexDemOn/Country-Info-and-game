@@ -5,6 +5,8 @@ import cn from 'classnames';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroller';
+import { Link } from 'react-router-dom';
 
 export default function FindCountry({ ...props }: FindCoutryProps): JSX.Element {
 
@@ -28,13 +30,44 @@ export default function FindCountry({ ...props }: FindCoutryProps): JSX.Element 
 
 
     function HandleSearch(e: any) {
-        setSearchResult(data?.filter((el: any) => el.name.official.toLowerCase().includes(e.target.value.toLowerCase())));
+        if (e.target.value.length > 0) {
+            setSearchResult(data?.filter((el: any) => el.name.official.toLowerCase().includes(e.target.value.toLowerCase())));
+        }
+        else {
+            data && setSearchResult([...data]);
+        }
+        setHasMore(true)
     }
 
-    const navigate = useNavigate();
-    const routeChange = (route: string) => {
-        navigate(`/country/${route}`);
-    }
+    const itemsPerPage = 20;
+    const [hasMore, setHasMore] = useState(true);
+    const [records, setRecords] = useState(itemsPerPage);
+
+    const loadMore = () => {
+        if (records === searchResult!.length) setHasMore(false);
+        else {
+            if (records + itemsPerPage < searchResult!.length) setRecords(records + itemsPerPage);
+            else setRecords(searchResult!.length);
+        }
+    };
+
+    const showItems = (el: any) => {
+        var items = [];
+        for (var i = 0; i < records; i++) {
+            el[i] && items.push(
+                <Link to={'/country/' + el[i].name.official} key={el[i].name.official}>
+                    <motion.div className={styles.country_item}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                    >
+                        <img src={el[i].flags.png} alt="" />
+                        <span>{el[i].name.official}</span>
+                    </motion.div>
+                </Link>
+            );
+        }
+        return items;
+    };
 
     return (
         <div {...props} className={styles.main_block}>
@@ -45,14 +78,14 @@ export default function FindCountry({ ...props }: FindCoutryProps): JSX.Element 
                 </form>
             </section>
             <div className={styles.country_block}>
-                {searchResult && searchResult.map((el: any) =>
-                    <div className={styles.country_item} key={el.name.official}
-                        onClick={() => routeChange(el.name.official)}
+                {data &&
+                    <InfiniteScroll
+                        pageStart={0}
+                        loadMore={loadMore}
+                        hasMore={hasMore}
                     >
-                        <img src={el.flags.svg} alt="" />
-                        <span>{el.name.official}</span>
-                    </div>
-                )}
+                        {showItems(searchResult)}
+                    </InfiniteScroll>}
             </div>
         </div>
     )

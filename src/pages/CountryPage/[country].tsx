@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CountryItemProps, CoutryProps } from './country.props';
 import styles from './country.module.scss';
 import cn from 'classnames';
-import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
-import Timestamp from 'react-timestamp';
 
 export default function Country({ children, ...props }: CoutryProps): JSX.Element {
 
